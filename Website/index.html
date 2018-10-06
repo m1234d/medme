@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <form action="https://good-lizard-34.localtunnel.me/api/submit_data" method="post" , enctype="multipart/form-data">
+        <div class="form">
+            <h2>Med.Me Medical History</h2>
+            <p>Input your medical information here, and we will upload the information to our secure cloud server, for access through the Med.Me app.</p>
+            <input id="one" type="radio" name="stage" checked="checked" />
+            <input id="two" type="radio" name="stage" />
+            <input id="three" type="radio" name="stage" />
+            <input id="four" type="radio" name="stage" />
+            <input id="five" type="radio" name="stage" />
+            <input id="six" type="radio" name="stage" />
+            <div class="stages">
+                <label for="one">1</label>
+                <label for="two">2</label>
+                <label for="three">3</label>
+                <label for="four">4</label>
+                <label for="five">5</label>
+                <label for="six">6</label>
+            </div>
+            <span class="progress"><span></span></span>
+            <div class="panels">
+                <div data-panel="one">
+                    <h2>Basic information</h2>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" />
+
+                    <br>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" />
+
+                    <br>
+                    <label for="profilePic">Profile picture:</label>
+                    <input type="file" id="file" name="file" accept="image/png, image/jpeg" />
+
+                    <br>
+                    <input type="text" id="birthDate" name="birthDate" placeholder="Birth Date (MM/DD/YYYY)" />
+
+                    <br>
+                    <input type="text" id="age" name="age" placeholder="Age" />
+
+                    <br>
+                    <input type="text" id="sex" name="sex" placeholder="Sex" />
+
+                    <br>
+                    <input type="text" id="address" name="address" placeholder="Address" />
+                    <button type="button">Next</button>
+                </div>
+                <div data-panel="two">
+                    <h2>Birth History</h2> Weight at Birth (lbs):
+                    <input type="text" id="birthWeight" name="birthWeight" placeholder="weight (lbs)" />
+
+                    <br> Was the child born at the proper time? If not, how many weeks into pregnancy was the child born?
+                    <input type="text" id="birthWeeks" name="birthWeeks" placeholder="Enter 'Yes' or number of weeks" />
+
+                    <br> How was the baby delivered?
+                    <label class="container">Vaginal
+                        <input type="radio" id="typeDelivery" name="typeDelivery" value="Vaginal">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Caesarean section
+                        <input type="radio" id="typeDelivery" name="typeDelivery" value="Caesarean section">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <br> If Caesarean section, explain why:
+                    <input type="text" id="typeDeliveryText" name="typeDeliveryText" placeholder="Reason" />
+
+                    <br> Were there any complications during the pregnancy?
+                    <input type="text" id="pregnancyComplications" name="pregnancyComplications" />
+
+                    <br> Was a NICU (Neonatal intensive care unit) stay required?
+                    <label class="container">Yes
+                        <input type="radio" id="usedNICU" name="usedNICU" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" id="usedNICU" name="usedNICU" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <br> During pregnancy, did the mother consume alcohol?
+                    <label class="container">Yes
+                        <input type="radio" id="motherConsumedAlcohol" name="motherConsumedAlcohol" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" id="motherConsumedAlcohol" name="motherConsumedAlcohol" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <br> During pregnancy, did the mother smoke?
+                    <label class="container">Yes
+                        <input type="radio" id="motherConsumedTobacco" name="motherConsumedTobacco" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" id="motherConsumedTobacco" name="motherConsumedTobacco" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <br> List any medications or drugs that the mother was taking during pregnancy. If none were taken, leave blank.
+                    <input type="text" id="motherConsumedDrugs" name="motherConsumedDrugs" />
+
+                    <br> List any prenatal vitamins that the mother took during pregnancy. If none were taken, leave blank.
+                    <input type="text" id="motherConsumedVitamins" name="motherConsumedVitamins" />
+
+                    <br> Was the initial feeding:
+                    <label class="container">Formula
+                        <input type="radio" id="initialFeeding" name="initialFeeding" value="Formula">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Breast Milk
+                        <input type="radio" id="initialFeeding" name="initialFeeding" value="Breast Milk">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <br> How long was the baby breastfed?
+                    <input type="text" id="initialFeedingDuration" name="initialFeedingDuration" />
+
+                    <br> List any complications during hospitalization after birth:
+                    <input type="text" id="hospitalComplications" name="hospitalComplications" />
+                    <button type="button">Next</button>
+                </div>
+                <div data-panel="three">
+                    <h2>Household Information</h2> What is the child's living situation?
+                    <input type="text" id="childLivingSituation" name="childLivingSituation" placeholder="Ex: adoptive parents, single/joint custody, foster family" />
+
+                    <br> Input the information of all the people living in the same household as the child.
+                    <br>
+                    <h5>Person 1</h5> Name
+                    <input type="text" id="familyName1" name="familyName1" placeholder="Full Name" />
+
+                    <br> Relationship to child:
+                    <input type="text" id="familyRelationship1" name="familyRelationship1" placeholder="Relationship" />
+
+                    <br> Birth Date:
+                    <input type="text" id="familyBirthDate1" name="familyBirthDate1" placeholder="MM/DD/YYYY" />
+
+                    <br> List any health problems:
+                    <input type="text" id="familyHealthProblems1" name="familyHealthProblems1" />
+
+                    <br>
+                    <h5>Person 2</h5> Name
+                    <input type="text" id="familyName2" name="familyName2" placeholder="Full Name" />
+
+                    <br> Relationship to child:
+                    <input type="text" id="familyRelationship2" name="familyRelationship2" placeholder="Relationship" />
+
+                    <br> Birth Date:
+                    <input type="text" id="familyBirthDate2" name="familyBirthDate2" placeholder="MM/DD/YYYY" />
+
+                    <br> List any health problems:
+                    <input type="text" id="familyHealthProblems2" name="familyHealthProblems2" />
+
+                    <br>
+                    <h5>Person 3</h5> Name
+                    <input type="text" id="familyName3" name="familyName3" placeholder="Full Name" />
+
+                    <br> Relationship to child:
+                    <input type="text" id="familyRelationship3" name="familyRelationship3" placeholder="Relationship" />
+
+                    <br> Birth Date:
+                    <input type="text" id="familyBirthDate3" name="familyBirthDate3" placeholder="MM/DD/YYYY" />
+
+                    <br> List any health problems:
+                    <input type="text" id="familyHealthProblems3" name="familyHealthProblems3" />
+
+                    <br>
+                    <h5>Person 4</h5> Name
+                    <input type="text" id="familyName4" name="familyName4" placeholder="Full Name" />
+
+                    <br> Relationship to child:
+                    <input type="text" id="familyRelationship4" name="familyRelationship4" placeholder="Relationship" />
+
+                    <br> Birth Date:
+                    <input type="text" id="familyBirthDate4" name="familyBirthDate4" placeholder="MM/DD/YYYY" />
+
+                    <br> List any health problems:
+                    <input type="text" id="familyHealthProblems4" name="familyHealthProblems4" />
+
+                    <br>
+                    <h5>Person 5</h5> Name
+                    <input type="text" id="familyName5" name="familyName5" placeholder="Full Name" />
+
+                    <br> Relationship to child:
+                    <input type="text" id="familyRelationship5" name="familyRelationship5" placeholder="Relationship" />
+
+                    <br> Birth Date:
+                    <input type="text" id="familyBirthDate5" name="familyBirthDate5" placeholder="MM/DD/YYYY" />
+
+                    <br> List any health problems:
+                    <input type="text" id="familyHealthProblems5" name="familyHealthProblems5" />
+
+                    <br>
+                    <h5>Person 6</h5> Name
+                    <input type="text" id="familyName6" name="familyName6" placeholder="Full Name" />
+
+                    <br> Relationship to child:
+                    <input type="text" id="familyRelationship6" name="familyRelationship6" placeholder="Relationship" />
+
+                    <br> Birth Date:
+                    <input type="text" id="familyBirthDate6" name="familyBirthDate6" placeholder="MM/DD/YYYY" />
+
+                    <br> List any health problems:
+                    <input type="text" id="familyHealthProblems6" name="familyHealthProblems6" />
+
+                    <br>
+                    <br> List any other siblings not in the household and their health problems:
+                    <input type="text" id="familyAnyOtherSiblings" name="familyAnyOtherSiblings" />
+                    <button type="button">Next</button>
+                </div>
+                <div data-panel="four">
+                    <h2>General</h2>
+                    <p>Do you consider your child to be in good health?</p>
+                    <label class="container">Yes
+                        <input type="radio" name="hasGoodHealth" id="hasGoodHealth" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="hasGoodHealth" id="hasGoodHealth" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="hasGoodHealth" id="hasGoodHealth" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="hasGoodHealthText" id="hasGoodHealthText" placeholder="Explain" />
+
+                    <p>Does your child have any serious illnesses or medical conditions?</p>
+                    <label class="container">Yes
+                        <input type="radio" name="hasSeriousIllness" id="hasSeriousIllness" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="hasSeriousIllness" id="hasSeriousIllness" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="hasSeriousIllness" id="hasSeriousIllness" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="hasSeriousIllnessText" id="hasSeriousIllnessText" placeholder="Explain" />
+
+                    <p>Has your child had any surgery?</p>
+                    <label class="container">Yes
+                        <input type="radio" name="hadSurgery" id="hadSurgery" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="hadSurgery" id="hadSurgery" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="hadSurgery" id="hadSurgery" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="hadSurgeryText" id="hadSurgeryText" placeholder="Explain" />
+
+                    <p>Has your child ever been hospitalized?</p>
+                    <label class="container">Yes
+                        <input type="radio" name="hasBeenHospitalized" id="hasBeenHospitalized" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="hasBeenHospitalized" id="hasBeenHospitalized" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="hasBeenHospitalized" id="hasBeenHospitalized" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="hasBeenHospitalizedText" id="hasBeenHospitalizedText" placeholder="Explain" />
+
+                    <p>Is your child allergic to medicine or drugs?</p>
+                    <label class="container">Yes
+                        <input type="radio" name="allergicToDrugs" id="allergicToDrugs" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="allergicToDrugs" id="allergicToDrugs" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="allergicToDrugs" id="allergicToDrugs" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="allergicToDrugsText" id="allergicToDrugsText" placeholder="Explain" />
+
+                    <p>Do you feel your family has enough to eat?</p>
+                    <label class="container">Yes
+                        <input type="radio" name="hasEnoughToEat" id="hasEnoughToEat" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="hasEnoughToEat" id="hasEnoughToEat" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="hasEnoughToEat" id="hasEnoughToEat" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="hasEnoughToEatText" id="hasEnoughToEatText" placeholder="Explain" />
+                    <button type="button">Next</button>
+                </div>
+                <div data-panel="five">
+                    <h2>Biological Family History</h2>
+                    <h3>Have any family members had the following?</h3>
+                    <p>Childhood Hearing Loss</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioHearingLoss" id="bioHearingLoss" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioHearingLoss" id="bioHearingLoss" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioHearingLoss" id="bioHearingLoss" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioHearingLossText" id="bioHearingLossText" placeholder="Who?" />
+
+                    <p>Nasal Allergies</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioNasalAllergies" id="bioNasalAllergies" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioNasalAllergies" id="bioNasalAllergies" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioNasalAllergies" id="bioNasalAllergies" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioNasalAllergiesText" id="bioNasalAllergiesText" placeholder="Who?" />
+
+                    <p>Asthma</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioAsthma" id="bioAsthma" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioAsthma" id="bioAsthma" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioAsthma" id="bioAsthma" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioAsthmaText" id="bioAsthmaText" placeholder="Who?" />
+
+                    <p>Tuberculosis</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioTuberculosis" id="bioTuberculosis" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioTuberculosis" id="bioTuberculosis" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioTuberculosis" id="bioTuberculosis" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioTuberculosisText" id="bioTuberculosisText" placeholder="Who?" />
+
+                    <p>Heart Disease</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioHeartDisease" id="bioHeartDisease" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioHeartDisease" id="bioHeartDisease" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioHeartDisease" id="bioHeartDisease" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioHeartDiseaseText" id="bioHeartDiseaseText" placeholder="Who?" />
+
+                    <p>High Cholesterol/Takes Cholesterol Medication</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioHighCholesterol" id="bioHighCholesterol" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioHighCholesterol" id="bioHighCholesterol" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioHighCholesterol" id="bioHighCholesterol" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioHighCholesterolText" id="bioHighCholesterolText" placeholder="Who?" />
+
+                    <p>Anemia</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioAnemia" id="bioAnemia" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioAnemia" id="bioAnemia" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioAnemia" id="bioAnemia" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioAnemiaText" id="bioAnemiaText" placeholder="Who?" />
+
+                    <p>Bleeding Disorder</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioBleedingDisorder" id="bioBleedingDisorder" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioBleedingDisorder" id="bioBleedingDisorder" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioBleedingDisorder" id="bioBleedingDisorder" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioBleedingDisorderText" id="bioBleedingDisorderText" placeholder="Who?" />
+
+                    <p>Dental Decay</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioBleedingDisorder" id="bioBleedingDisorder" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioBleedingDisorder" id="bioBleedingDisorder" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioBleedingDisorder" id="bioBleedingDisorder" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioBleedingDisorderText" id="bioBleedingDisorderText" placeholder="Who?" />
+
+                    <p>Cancer (before 55 years old)</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioCancer" id="bioCancer" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioCancer" id="bioCancer" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioCancer" id="bioCancer" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioCancerText" id="bioCancerText" placeholder="Who?" />
+
+                    <p>Liver Disease</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioLiverDisease" id="bioLiverDisease" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioLiverDisease" id="bioLiverDisease" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioLiverDisease" id="bioLiverDisease" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioLiverDiseaseText" id="bioLiverDiseaseText" placeholder="Who?" />
+
+                    <p>Kidney Disease</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioKidneyDisease" id="bioKidneyDisease" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioKidneyDisease" id="bioKidneyDisease" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioKidneyDisease" id="bioKidneyDisease" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioKidneyDiseaseText" id="bioKidneyDiseaseText" placeholder="Who?" />
+
+                    <p>Bed Wetting (after 10 years old)</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioBedWetting" id="bioBedWetting" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioBedWetting" id="bioBedWetting" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioBedWetting" id="bioBedWetting" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioBedWettingText" id="bioBedWettingText" placeholder="Who?" />
+
+                    <p>Diabetes</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioDiabetes" id="bioDiabetes" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioDiabetes" id="bioDiabetes" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioDiabetes" id="bioDiabetes" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioDiabetesText" id="bioDiabetesText" placeholder="Who?" />
+
+                    <p>Obesity</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioObesity" id="bioObesity" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioObesity" id="bioObesity" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioObesity" id="bioObesity" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioObesityText" id="bioObesityText" placeholder="Who?" />
+
+                    <p>Epilepsy or Convulsions</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioConvulsions" id="bioConvulsions" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioConvulsions" id="bioConvulsions" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioConvulsions" id="bioConvulsions" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioConvulsionsText" id="bioConvulsionsText" placeholder="Who?" />
+
+                    <p>Alcohol Abuse</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioAlcoholAbuse" id="bioAlcoholAbuse" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioAlcoholAbuse" id="bioAlcoholAbuse" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioAlcoholAbuse" id="bioAlcoholAbuse" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioAlcoholAbuseText" id="bioAlcoholAbuseText" placeholder="Who?" />
+
+                    <p>Drug Abuse</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioDrugAbuse" id="bioDrugAbuse" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioDrugAbuse" id="bioDrugAbuse" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioDrugAbuse" id="bioDrugAbuse" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioDrugAbuseText" id="bioDrugAbuseText" placeholder="Who?" />
+
+                    <p>Mental Illness</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioMentalIllness" id="bioMentalIllness" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioMentalIllness" id="bioMentalIllness" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioMentalIllness" id="bioMentalIllness" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioMentalIllnessText" id="bioMentalIllnessText" placeholder="Who?" />
+
+                    <p>Developmental Disability</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioDevDisability" id="bioDevDisability" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioDevDisability" id="bioDevDisability" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioDevDisability" id="bioDevDisability" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioDevDisabilityText" id="bioDevDisabilityText" placeholder="Who?" />
+
+                    <p>Immune Problems</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioImmuneProblems" id="bioImmuneProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioImmuneProblems" id="bioImmuneProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioImmuneProblems" id="bioImmuneProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioImmuneProblemsText" id="bioImmuneProblemsText" placeholder="Who?" />
+
+                    <p>Tobacco Use</p>
+                    <label class="container">Yes
+                        <input type="radio" name="bioTobaccoUse" id="bioTobaccoUse" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">No
+                        <input type="radio" name="bioTobaccoUse" id="bioTobaccoUse" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Don't Know
+                        <input type="radio" name="bioTobaccoUse" id="bioTobaccoUse" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="bioTobaccoUseText" id="bioTobaccoUseText" placeholder="Who?" />
+
+                    <h3>Additional Family History</h3>
+                    <input type="text" name="bioOtherText" id="bioOtherText" placeholder="Additional Family History" />
+                    <button type="button">Next</button>
+                </div>
+                <div data-panel="six">
+                    <h2>Past Medical History</h2>
+                    <p> Does your child have a history of Chicken Pox? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastChickenPox" name="pastChickenPox" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastChickenPox" name="pastChickenPox" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastChickenPox" name="pastChickenPox" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastChickenPoxText" name="pastChickenPoxText" placeholder="Explain" />
+
+                    <p> Does your child have a history of Frequent Ear Infections? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastFrequentEarInfections" name="pastFrequentEarInfections" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastFrequentEarInfections" name="pastFrequentEarInfections" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastFrequentEarInfections" name="pastFrequentEarInfections" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastFrequentEarInfectionsText" name="pastFrequentEarInfectionsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of problems with the ear or hearing? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastEarProblems" name="pastEarProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastEarProblems" name="pastEarProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastEarProblems" name="pastEarProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastEarProblemsText" name="pastEarProblemsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of Nasal Allergies? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastNasalAllergies" name="pastNasalAllergies" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastNasalAllergies" name="pastNasalAllergies" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastNasalAllergies" name="pastNasalAllergies" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastNasalAllergiesText" name="pastNasalAllergiesText" placeholder="Explain" />
+
+                    <p> Does your child have a history of problems with the eye or viewing? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastEyeProblems" name="pastEyeProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastEyeProblems" name="pastEyeProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastEyeProblems" name="pastEyeProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastEyeProblemsText" name="pastEyeProblemsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of asthma, bronchitis, bronchiolitis, or pneumonia? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastRespitoryProblems" name="pastRespitoryProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastRespitoryProblems" name="pastRespitoryProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastRespitoryProblems" name="pastRespitoryProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastRespitoryProblemsText" name="pastRespitoryProblemsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of heart problems or heart murmurs? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastHeartProblem" name="pastHeartProblem" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastHeartProblem" name="pastHeartProblem" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastHeartProblem" name="pastHeartProblem" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastHeartProblemText" name="pastHeartProblemText" placeholder="Explain" />
+
+                    <p> Does your child have a history of anemia or bleeding problems? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastAnemiaOrBleeding" name="pastAnemiaOrBleeding" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastAnemiaOrBleeding" name="pastAnemiaOrBleeding" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastAnemiaOrBleeding" name="pastAnemiaOrBleeding" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastAnemiaOrBleedingText" name="pastAnemiaOrBleedingText" placeholder="Explain" />
+
+                    <p> Does your child have a history of any blood transfusions? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastBloodTransfusion" name="pastBloodTransfusion" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastBloodTransfusion" name="pastBloodTransfusion" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastBloodTransfusion" name="pastBloodTransfusion" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastBloodTransfusionText" name="pastBloodTransfusionText" placeholder="Explain" />
+
+                    <p> Does your child have a history of HIV? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastHIV" name="pastHIV" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastHIV" name="pastHIV" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastHIV" name="pastHIV" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastHIVText" name="pastHIVText" placeholder="Explain" />
+
+                    <p> Does your child have a history of organ transplants? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastOrganTransplant" name="pastOrganTransplant" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastOrganTransplant" name="pastOrganTransplant" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastOrganTransplant" name="pastOrganTransplant" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastOrganTransplantText" name="pastOrganTransplantText" placeholder="Explain" />
+
+                    <p> Does your child have a history of malignancy/bone marrow transplant? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastMalginancyOrBoneMarrow" name="pastMalginancyOrBoneMarrow" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastMalginancyOrBoneMarrow" name="pastMalginancyOrBoneMarrow" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastMalginancyOrBoneMarrow" name="pastMalginancyOrBoneMarrow" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastMalginancyOrBoneMarrowText" name="pastMalginancyOrBoneMarrowText" placeholder="Explain" />
+
+                    <p> Does your child have a history of chemotherapy? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastChemotherapy" name="pastChemotherapy" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastChemotherapy" name="pastChemotherapy" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastChemotherapy" name="pastChemotherapy" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastChemotherapyText" name="pastChemotherapyText" placeholder="Explain" />
+
+                    <p> Does your child have a history of Frequent Abdominal Pain? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastFrequentAbdominalPain" name="pastFrequentAbdominalPain" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastFrequentAbdominalPain" name="pastFrequentAbdominalPain" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastFrequentAbdominalPain" name="pastFrequentAbdominalPain" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastFrequentAbdominalPainText" name="pastFrequentAbdominalPainText" placeholder="Explain" />
+
+                    <p> Does your child have a history of constapation? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastConstapation" name="pastConstapation" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastConstapation" name="pastConstapation" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastConstapation" name="pastConstapation" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastConstapationText" name="pastConstapationText" placeholder="Explain" />
+
+                    <p> Does your child have a history of urinary tract infections? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastUTI" name="pastUTI" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastUTI" name="pastUTI" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastUTI" name="pastUTI" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastUTIText" name="pastUTIText" placeholder="Explain" />
+
+                    <p> Does your child have a history of congenital cataracts/retinoblastoma? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastCataractsRetina" name="pastCataractsRetina" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastCataractsRetina" name="pastCataractsRetina" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastCataractsRetina" name="pastCataractsRetina" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastCataractsRetinaText" name="pastCataractsRetinaText" placeholder="Explain" />
+
+                    <p> Does your child have a history of Metabolic/Genetic disorders? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastMetabolicGeneticDisorders" name="pastMetabolicGeneticDisorders" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastMetabolicGeneticDisorders" name="pastMetabolicGeneticDisorders" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastMetabolicGeneticDisorders" name="pastMetabolicGeneticDisorders" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastMetabolicGeneticDisordersText" name="pastMetabolicGeneticDisordersText" placeholder="Explain" />
+
+                    <p> Does your child have a history of cancer? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastCancer" name="pastCancer" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastCancer" name="pastCancer" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastCancer" name="pastCancer" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastCancerText" name="pastCancerText" placeholder="Explain" />
+
+                    <p> Does your child have a history of kidney disease or urologic malformations? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastKidneyDiseaseUrologic" name="pastKidneyDiseaseUrologic" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastKidneyDiseaseUrologic" name="pastKidneyDiseaseUrologic" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastKidneyDiseaseUrologic" name="pastKidneyDiseaseUrologic" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastKidneyDiseaseUrologicText" name="pastKidneyDiseaseUrologicText" placeholder="Explain" />
+
+                    <p> Does your child have a history of bed-wetting (after 5 years old) ? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastBedWetting" name="pastBedWetting" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastBedWetting" name="pastBedWetting" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastBedWetting" name="pastBedWetting" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastBedWettingText" name="pastBedWettingText" placeholder="Explain" />
+
+                    <p> Does your child have a history of sleep problems and/or snoring? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastSleepProblems" name="pastSleepProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastSleepProblems" name="pastSleepProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastSleepProblems" name="pastSleepProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastSleepProblemsText" name="pastSleepProblemsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of chronic or recurrent skin problems (eg, acne, eczema) ? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastChronicSkinProblems" name="pastChronicSkinProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastChronicSkinProblems" name="pastChronicSkinProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastChronicSkinProblems" name="pastChronicSkinProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastChronicSkinProblemsText" name="pastChronicSkinProblemsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of frequent headaches? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastFrequentHeadaches" name="pastFrequentHeadaches" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastFrequentHeadaches" name="pastFrequentHeadaches" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastFrequentHeadaches" name="pastFrequentHeadaches" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastFrequentHeadachesText" name="pastFrequentHeadachesText" placeholder="Explain" />
+
+                    <p> Does your child have a history of convulsions or other neurologic problems? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastConvolutionsNeurological" name="pastConvolutionsNeurological" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastConvolutionsNeurological" name="pastConvolutionsNeurological" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastConvolutionsNeurological" name="pastConvolutionsNeurological" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastConvolutionsNeurologicalText" name="pastConvolutionsNeurologicalText" placeholder="Explain" />
+
+                    <p> Does your child have a history of obesity? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastObesity" name="pastObesity" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastObesity" name="pastObesity" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastObesity" name="pastObesity" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastObesityText" name="pastObesityText" placeholder="Explain" />
+
+                    <p> Does your child have a history of diabetes? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastDiabetes" name="pastDiabetes" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastDiabetes" name="pastDiabetes" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastDiabetes" name="pastDiabetes" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastDiabetesText" name="pastDiabetesText" placeholder="Explain" />
+
+                    <p> Does your child have a history of thyroid or other endocrine problems? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastThyroidEndocrineProblem" name="pastThyroidEndocrineProblem" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastThyroidEndocrineProblem" name="pastThyroidEndocrineProblem" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastThyroidEndocrineProblem" name="pastThyroidEndocrineProblem" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastThyroidEndocrineProblemText" name="pastThyroidEndocrineProblemText" placeholder="Explain" />
+
+                    <p> Does your child have a history of high blood pressure? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastHBP" name="pastHBP" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastHBP" name="pastHBP" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastHBP" name="pastHBP" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastHBPText" name="pastHBPText" placeholder="Explain" />
+
+                    <p> Does your child have a history of history of serious injuries/fractures/concussions? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastSeriousInjuryFractures" name="pastSeriousInjuryFractures" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastSeriousInjuryFractures" name="pastSeriousInjuryFractures" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastSeriousInjuryFractures" name="pastSeriousInjuryFractures" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastSeriousInjuryFracturesText" name="pastSeriousInjuryFracturesText" placeholder="Explain" />
+
+                    <p> Does your child have a history of alcohol or drugs? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastAlcoholDrugs" name="pastAlcoholDrugs" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastAlcoholDrugs" name="pastAlcoholDrugs" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastAlcoholDrugs" name="pastAlcoholDrugs" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastAlcoholDrugsText" name="pastAlcoholDrugsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of tobacco use? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastTobacco" name="pastTobacco" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastTobacco" name="pastTobacco" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastTobacco" name="pastTobacco" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastTobaccoText" name="pastTobaccoText" placeholder="Explain" />
+
+                    <p> Does your child have a history of ADHD/anxiety/mood problems/depression? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastADHDAnxietyMoodProblems" name="pastADHDAnxietyMoodProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastADHDAnxietyMoodProblems" name="pastADHDAnxietyMoodProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastADHDAnxietyMoodProblems" name="pastADHDAnxietyMoodProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastADHDAnxietyMoodProblemsText" name="pastADHDAnxietyMoodProblemsText" placeholder="Explain" />
+
+                    <p> Does your child have a history of developmental delay? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastDevelopmentalDelay" name="pastDevelopmentalDelay" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastDevelopmentalDelay" name="pastDevelopmentalDelay" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastDevelopmentalDelay" name="pastDevelopmentalDelay" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastDevelopmentalDelayText" name="pastDevelopmentalDelayText" placeholder="Explain" />
+
+                    <p> Does your child have a history of dental decay? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastDentalDecay" name="pastDentalDecay" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastDentalDecay" name="pastDentalDecay" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastDentalDecay" name="pastDentalDecay" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastDentalDecayText" name="pastDentalDecayText" placeholder="Explain" />
+
+                    <p> Does your child have a history of family violence? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastFamilyViolence" name="pastFamilyViolence" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastFamilyViolence" name="pastFamilyViolence" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastFamilyViolence" name="pastFamilyViolence" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastFamilyViolenceText" name="pastFamilyViolenceText" placeholder="Explain" />
+
+                    <p> Does your child have a history of sexually transmitted infections? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastSTI" name="pastSTI" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastSTI" name="pastSTI" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastSTI" name="pastSTI" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastSTIText" name="pastSTIText" placeholder="Explain" />
+
+                    <p> Has your child ever been pregnant? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastPregancy" name="pastPregancy" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastPregancy" name="pastPregancy" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastPregancy" name="pastPregancy" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastPregancyText" name="pastPregancyText" placeholder="Explain" />
+
+                    <p> Does your child have a history of problems with her periods? (for girls)</p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastPeriodProblems" name="pastPeriodProblems" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastPeriodProblems" name="pastPeriodProblems" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastPeriodProblems" name="pastPeriodProblems" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastPeriodProblemsText" name="pastPeriodProblemsText" placeholder="Explain" />
+
+                    <p> If yes to above, has your child has her first period? (for girls)</p>
+                    <label class="container"> Yes
+                        <input type="radio" id="hasHadPeriod" name="hasHadPeriod" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="hasHadPeriod" name="hasHadPeriod" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="hasHadPeriod" name="hasHadPeriod" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="hasHadPeriodText" name="hasHadPeriodText" placeholder="Explain" />
+
+                    <p> If yes to above, when was the first period? (for girls)</p>
+                    <label class="container"> Yes
+                        <input type="radio" id="ageFirstPeriod" name="ageFirstPeriod" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="ageFirstPeriod" name="ageFirstPeriod" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="ageFirstPeriod" name="ageFirstPeriod" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="ageFirstPeriodText" name="ageFirstPeriodText" placeholder="Explain" />
+
+                    <p> Any other significant problems? </p>
+                    <label class="container"> Yes
+                        <input type="radio" id="pastOTHER" name="pastOTHER" value="Yes">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> No
+                        <input type="radio" id="pastOTHER" name="pastOTHER" value="No">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container"> Don't Know
+                        <input type="radio" id="pastOTHER" name="pastOTHER" value="Don't Know">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" id="pastOTHERText" name="pastOTHERText" placeholder="Explain" />
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
