@@ -9,9 +9,9 @@ export default class HomeScreen extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = {firstName: "", image: ""};
-    this.apiUrl = "https://average-cow-84.localtunnel.me/api/";
-    this.getName(6);
+    this.state = {firstName: "", image: "1"};
+    this.apiUrl = "https://good-lizard-34.localtunnel.me/api/";
+    this.getName(11);
 
   }
   getData(url) {
@@ -30,7 +30,7 @@ export default class HomeScreen extends React.Component {
       this.setState(previousState => {
         console.log(responseJson);
         this.getQR(id);
-        return { firstName: responseJson.rows[0].firstName + " " + responseJson.rows[0].lastName };
+        return { firstName: responseJson.rows[0].firstName, lastName: responseJson.rows[0].lastName };
       });
 
     });
@@ -48,7 +48,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.topText}>{this.state.firstName}</Text>
+          <Text style={styles.topText}>{this.state.firstName + " " + this.state.lastName}</Text>
         </View>
         <View style={styles.imageContainer}>
           <Image style={styles.welcomeImage} resizeMode="contain" source={{uri: this.state.image}}/>

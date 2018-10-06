@@ -79,6 +79,40 @@ def addColumn(key, lastItem):
 
     return result
 
+def isUser(user, password):
+    cursor = db.cursor()
+    queryString = "SELECT * FROM medme.patient_info WHERE username='" + user + "' and pass='" + password + "'"
+    print(queryString)
+    cursor.execute(queryString)
+    rows = cursor.fetchall()
+    print(len(rows))
+    cursor.close()
+    if len(rows) > 0:
+        return True
+    else:
+        return False
+    
+def addAccount(firstName, lastName, username, password):
+    cursor = db.cursor()
+    queryString = "INSERT INTO medme.patient_info (username, pass, firstName, lastName, isParent) VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', 'Yes')"
+    print(queryString)
+    cursor.execute(queryString)
+    db.commit()
+    cursor.close()
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

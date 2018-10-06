@@ -29,8 +29,7 @@ def get_patient():
 @app.route("/api/get_patient_qr", methods=['GET'])
 def get_patient_qr():
     id = request.args.get('id')
-    info = connect.getPatient(id)
-    qr = qrcode.make(str(info));
+    qr = qrcode.make(str(id));
     buffered = BytesIO()
     qr.save(buffered, format="JPEG")
     img_str = base64.b64encode(buffered.getvalue())
@@ -90,4 +89,32 @@ def submit_data():
     result['status'] = "Ok"
     return jsonify(result)
 
+@app.route("/api/login")
+def login():
+    username = request.args.get('user')
+    password = request.args.get('pass')
+    result = {}
+    if(connect.isUser(username, password)):
+        result['status'] = "Ok"
+    else:
+        result['status'] = "No"
+    print(result)
+    return jsonify(result);
+
+@app.route("/api/signup")
+def signup():
+    firstName = request.args.get("firstName")
+    lastName = request.args.get("lastName")
+    username = request.args.get("user")
+    password = request.args.get("pass")
+    result = {}
+    connect.addAccount(firstName, lastName, username, password)
+    result['status'] = "Ok"
+    print(result)
+    return jsonify(result)
+    
+    
+    
+    
+    
 
