@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Image, Button } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import {Buffer} from 'buffer';
 
@@ -9,10 +9,16 @@ export default class HomeScreen extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = {firstName: "", image: "1"};
-    this.apiUrl = "https://good-lizard-34.localtunnel.me/api/";
-    this.getName(11);
-
+    this.next = this.next.bind(this);
+    this.prev = this.prev.bind(this);
+    this.state = {firstName: " ", lastName: " ", image: "1", children: [], index: 0};
+    this.apiUrl = "https://ancient-chipmunk-75.localtunnel.me/api/";
+    if(this.props.screenProps.getMode() == "parent") {
+      this.getChildren(this.props.screenProps.id);
+    }
+    else {
+      this.getName(this.props.screenProps.id);
+    }
   }
   getData(url) {
     return fetch(this.apiUrl + url, {
@@ -26,11 +32,23 @@ export default class HomeScreen extends React.Component {
   }
   getName(id) {
     this.getData("get_patient_by_id?id=" + id).then((responseJson) => {
-
+      console.log(responseJson);
       this.setState(previousState => {
         console.log(responseJson);
         this.getQR(id);
         return { firstName: responseJson.rows[0].firstName, lastName: responseJson.rows[0].lastName };
+      });
+
+    });
+  }
+  getChildren(id) {
+    this.getData("get_children?id=" + id).then((responseJson) => {
+      console.log(responseJson);
+      this.setState(previousState => {
+        console.log(responseJson);
+        this.getName(responseJson.children[0])
+
+        return { children: responseJson.children};
       });
 
     });
@@ -44,17 +62,90 @@ export default class HomeScreen extends React.Component {
       });
     });
   }
+  next() {
+    console.log(this.props.screenProps.childCreated);
+    if(this.props.screenProps.childCreated) {
+      this.getChildren(this.props.screenProps.id);
+      this.props.screenProps.childCreated(false);
+    }
+    this.setState(previousState => {
+      if(previousState.index >= previousState.children.length - 1) {
+        return {index: 0};
+      }
+      return {index: previousState.index + 1}
+    });
+    console.log(this.state.index);
+    this.getName(this.state.children[this.state.index])
+
+  }
+  prev() {
+    console.log(this.props.screenProps.childCreated);
+    if(this.props.screenProps.childCreated) {
+      this.getChildren(this.props.screenProps.id);
+      this.props.screenProps.childCreated(false);
+    }
+    this.setState(previousState => {
+      if(previousState.index <= 0) {
+        return {index: previousState.children.length - 1};
+      }
+      return {index: previousState.index - 1}
+    });
+    this.getName(this.state.children[this.state.index]);
+
+  }
   render() {
-    return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.topText}>{this.state.firstName + " " + this.state.lastName}</Text>
+    console.log(this.props.screenProps.getMode())
+
+    if(this.props.screenProps.getMode() == "parent") {
+      return (
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.topTopText}>Children</Text>
+            <Text style={styles.topText}>{this.state.firstName + " " + this.state.lastName}</Text>
+          </View>
+          <View style={styles.imageContainer}>
+            <Image style={styles.welcomeImage} resizeMode="contain" source={{uri: this.state.image}}/>
+          </View>
+          <View style={styles.buttons}>
+            <Button
+              onPress={this.prev}
+              title="Previous"
+              color="black"
+            />
+            <Button
+              onPress={this.next}
+              title="Next"
+              color="black"
+            />
+          </View>
         </View>
-        <View style={styles.imageContainer}>
-          <Image style={styles.welcomeImage} resizeMode="contain" source={{uri: this.state.image}}/>
+      )
+    }
+    else if(this.props.screenProps.getMode() == "child") {
+      return (
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.topText}>{this.state.firstName + " " + this.state.lastName}</Text>
+          </View>
+          <View style={styles.imageContainer}>
+            <Image style={styles.welcomeImage} resizeMode="contain" source={{uri: this.state.image}}/>
+          </View>
+
         </View>
-      </View>
-    );
+      );
+    }
+    else {
+      return (
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.topText}>{this.state.firstName + " " + this.state.lastName}</Text>
+          </View>
+          <View style={styles.imageContainer}>
+            <Image style={styles.welcomeImage} resizeMode="contain" source={{uri: this.state.image}}/>
+          </View>
+        </View>
+      );
+    }
   }
 }
 
@@ -65,7 +156,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center'
   },
+  buttons: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  topTopText: {
+    fontSize: 35
+  },
   topText: {
+    fontWeight: 'bold',
+    paddingTop: 30,
+    paddingLeft: 15,
     fontSize: 30
   },
   imageContainer: {

@@ -7,18 +7,32 @@ import LoginScreen from './screens/LoginScreen';
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-
+    this.getMode = this.getMode.bind(this);
     this.login = this.login.bind(this);
+    this.childAdded = this.childAdded.bind(this);
   }
   state = {
     isLoadingComplete: false,
-    loggedIn: true
+    childCreated: false,
+    loggedIn: false,
+    id: "35",
+    mode: "doctor"
   };
 
-  login() {
+  login(id, mode) {
       this.setState({
+        id: id,
+        mode: mode,
         loggedIn: true
       })
+  }
+  childAdded(value) {
+    this.setState({
+      childCreated: value
+    });
+  }
+  getMode() {
+    return this.state.mode;
   }
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
@@ -33,7 +47,7 @@ export default class App extends React.Component {
       if(this.state.loggedIn == false) {
         return (
           <View style={styles.container}>
-            <LoginScreen login={this.login} />
+            <LoginScreen login={this.login}  getMode={this.getMode} screenProps={this.state.id} />
           </View>
         );
       }
@@ -41,7 +55,7 @@ export default class App extends React.Component {
         return (
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <AppNavigator />
+            <AppNavigator login={this.login} childAdded={this.childAdded} getMode={this.getMode} screenProps={{id: this.state.id, getMode: this.getMode, childAdded: this.childAdded}}/>
           </View>
         );
       }

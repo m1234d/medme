@@ -13,7 +13,9 @@ import AddChildScreen from '../screens/AddChildScreen';
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
+
 state = {
+  id: "",
   isParent: true,
 };
 HomeStack.navigationOptions = {
@@ -76,7 +78,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  AddChildStack,
   HomeStack,
+  AddChildStack,
   SettingsStack,
 });
